@@ -2,14 +2,23 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background-color: skyblue;
+    text-align: center;
+    background-color: lightblue;
 }
 
 h1 {
+    padding: 5vw;
+    box-sizing: border-box;
     background-color: honeydew;
     font-family:'Courier New', Courier, monospace;
+    border-radius: 20px;
+    position: top;
 }
 #party-container {
+    padding: 1vw;
+    box-sizing: border-box;
+    background-color: skyblue;
+    border-radius: 30px;
     font-family: 'Courier New', Courier, monospace;
     border: 10px 10px 10px 10px honeydew;
 }
