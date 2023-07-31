@@ -69,23 +69,23 @@ const renderSinglePartyById = async (id) => {
     const partyDetailsElement = document.createElement('div');
     partyDetailsElement.classList.add('party-details');
     partyDetailsElement.innerHTML = `
-            <h2>${party.title}</h2>
-            <p>${party.event}</p>
-            <p>${party.city}</p>
-            <p>${party.state}</p>
-            <p>${party.country}</p>
+            <h2>${party.name}</h2>
+            <p>${party.description}</p>
+            <p>${party.date}</p>
+            <p>${party.time}</p>
+            <p>${party.location}</p>
             <h3>Guests:</h3>
             <ul>
             ${guests
-              .map(
-                (guest, index) => `
+        .map(
+          (guest, index) => `
               <li>
                 <div>${guest.name}</div>
                 <div>${rsvps[index].status}</div>
               </li>
             `
-              )
-              .join('')}
+        )
+        .join('')}
           </ul>
           
 
@@ -113,25 +113,25 @@ const renderParties = async (parties) => {
       partyElement.classList.add('party');
       partyElement.innerHTML = `
                 <h2>${party.name}</h2>
+                <p>${party.description}</p>
+                <p>${party.date}</p>
+                <p>${party.time}</p>
+                <p>${party.location}</p>
                 <button class="details-button" data-id="${party.id}">See Details</button>
                 <button class="delete-button" data-id="${party.id}">Delete</button>
             `;
-      
+
       partyContainer.appendChild(partyElement);
 
       // see details
       const detailsButton = partyElement.querySelector('.details-button');
       detailsButton.addEventListener('click', async (event) => {
-        partyElement.innerHTML = `
-        <h2>${party.name}</h2>
-        <p>${party.description}</p>
-        <p>${party.date}</p>
-        <p>${party.time}</p>
-        <p>${party.location}</p>
-        <button class="details-button" data-id="${party.id}">See Details</button>
-        <button class="delete-button" data-id="${party.id}">Delete</button>
-    `;
-    console.log(partyElement);
+        try {
+          const id = event.target.dataset.id;
+          renderSinglePartyById(id);
+        } catch (err) {
+          console.error(err);
+        }
       });
 
       // delete party
